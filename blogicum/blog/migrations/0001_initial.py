@@ -28,7 +28,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "is_published",
-                    models.BooleanField(default=True, verbose_name="Опубликовано"),
+                    models.BooleanField(
+                        default=True, verbose_name="Опубликовано"
+                    ),
                 ),
                 (
                     "created_at",
@@ -36,11 +38,16 @@ class Migration(migrations.Migration):
                         auto_now_add=True, verbose_name="Дата создания"
                     ),
                 ),
-                ("title", models.CharField(max_length=256, verbose_name="Название")),
+                (
+                    "title",
+                    models.CharField(max_length=256, verbose_name="Название"),
+                ),
                 ("description", models.TextField(verbose_name="Описание")),
                 (
                     "slug",
-                    models.SlugField(max_length=64, unique=True, verbose_name="Слаг"),
+                    models.SlugField(
+                        max_length=64, unique=True, verbose_name="Слаг"
+                    ),
                 ),
             ],
             options={
@@ -63,7 +70,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "is_published",
-                    models.BooleanField(default=True, verbose_name="Опубликовано"),
+                    models.BooleanField(
+                        default=True, verbose_name="Опубликовано"
+                    ),
                 ),
                 (
                     "created_at",
@@ -93,7 +102,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "is_published",
-                    models.BooleanField(default=True, verbose_name="Опубликовано"),
+                    models.BooleanField(
+                        default=True, verbose_name="Опубликовано"
+                    ),
                 ),
                 (
                     "created_at",
@@ -101,11 +112,16 @@ class Migration(migrations.Migration):
                         auto_now_add=True, verbose_name="Дата создания"
                     ),
                 ),
-                ("title", models.CharField(max_length=256, verbose_name="Название")),
+                (
+                    "title",
+                    models.CharField(max_length=256, verbose_name="Название"),
+                ),
                 ("text", models.TextField(verbose_name="Текст")),
                 (
                     "pub_date",
-                    models.DateTimeField(verbose_name="Дата и время публикации"),
+                    models.DateTimeField(
+                        verbose_name="Дата и время публикации"
+                    ),
                 ),
                 (
                     "author",

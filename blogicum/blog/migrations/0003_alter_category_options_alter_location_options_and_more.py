@@ -15,7 +15,10 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name="category",
-            options={"verbose_name": "категория", "verbose_name_plural": "Категории"},
+            options={
+                "verbose_name": "категория",
+                "verbose_name_plural": "Категории",
+            },
         ),
         migrations.AlterModelOptions(
             name="location",
@@ -49,7 +52,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="location",
             name="name",
-            field=models.CharField(max_length=256, verbose_name="Название места"),
+            field=models.CharField(
+                max_length=256, verbose_name="Название места"
+            ),
         ),
         migrations.AlterField(
             model_name="post",
@@ -93,11 +98,15 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "text",
-                    models.TextField(max_length=100, verbose_name="Текст комментария"),
+                    models.TextField(
+                        max_length=100, verbose_name="Текст комментария"
+                    ),
                 ),
                 (
                     "created_at",
-                    models.DateTimeField(auto_now_add=True, verbose_name="Создано"),
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Создано"
+                    ),
                 ),
                 (
                     "author",

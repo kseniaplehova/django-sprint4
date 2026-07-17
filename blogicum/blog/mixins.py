@@ -1,44 +1,24 @@
-from django.core.paginator import Paginator
-from django.shortcuts import redirect, get_object_or_404
-from django.http import HttpResponseForbidden
-
-from .constance import PAGINATE_COUNT
-from .models import Post
+from blog.models import Post
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import get_object_or_404, redirect
 
 
-class PostCheckMixin:
-    """Mixin для проверки прав доступа к посту."""
+class PostCheckMixin(UserPassesTestMixin):
+    pk_url_kwarg = "post_id"
 
-    pk_url_kwarg = 'post_id'
-    template_name = 'blog/create.html'
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+        return get_object_or_404(queryset, pk=self.kwargs[self.pk_url_kwarg])
 
-    def get_object(self):
-        post = super().get_object()
-        self.check_permissions(post)
-        return post
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
 
-    def check_permissions(self, post):
-        if not post.is_published and post.author != self.request.user:
-            raise HttpResponseForbidden("У вас нет доступа")
-
-    def dispatch(self, request, *args, **kwargs):
-        post = get_object_or_404(
-            self.get_queryset(),
-            pk=self.kwargs.get('post_id')
-        )
-        if post.author != request.user:
-            return redirect('blog:post_detail', post_id=post.id)
-        return super().dispatch(request, *args, **kwargs)
+    def handle_no_permission(self):
+        post = self.get_object()
+        return redirect("blog:post_detail", post_id=post.pk)
 
 
 class PostMixin:
-    """Mixin для модели Post."""
-
     model = Post
-
-
-def paginate_queryset(queryset, request):
-    """Функция для пагинации переданного queryset."""
-    paginator = Paginator(queryset, PAGINATE_COUNT)
-    page_number = request.GET.get('page')
-    return paginator.get_page(page_number)

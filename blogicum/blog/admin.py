@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, Category, Location, Comment
+from .models import Category, Comment, Location, Post
 
 
 class CommentInline(admin.TabularInline):
@@ -10,24 +10,34 @@ class CommentInline(admin.TabularInline):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'pub_date', 'category', 'location', )
-    list_filter = ('author', 'category', 'location', 'pub_date')
-    search_fields = ('title', 'text', 'author__username')
-    ordering = ('-pub_date',)
+    list_display = (
+        "title",
+        "author",
+        "pub_date",
+        "category",
+        "location",
+    )
+    list_filter = ("author", "category", "location", "pub_date")
+    search_fields = ("title", "text", "author__username")
+    ordering = ("-pub_date",)
     inlines = (CommentInline,)
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug')
-    prepopulated_fields = {'slug': ('title',)}
+    list_display = ("title", "slug")
+    prepopulated_fields = {"slug": ("title",)}
 
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ("name",)
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('author', 'text', 'post',)
+    list_display = (
+        "author",
+        "text",
+        "post",
+    )
