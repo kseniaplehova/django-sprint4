@@ -1,6 +1,7 @@
+from django.db import models
+
 from core.constants import SLUG_LENGTH, TEXT_LENGTH, TITLE_LENGTH
 from core.models import AuthorModel, CreatedAtModel, PublishedModel, TitleModel
-from django.db import models
 
 
 class Category(PublishedModel, TitleModel):
