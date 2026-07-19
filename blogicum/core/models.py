@@ -1,6 +1,7 @@
-from core.constants import TITLE_LENGTH
 from django.contrib.auth.models import User
 from django.db import models
+
+from core.constants import TITLE_LENGTH
 
 
 class CreatedAtModel(models.Model):

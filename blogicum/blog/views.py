@@ -1,9 +1,3 @@
-from blog.comments_check import render_comment_template
-from blog.forms import CommentForm, PostForm, ProfileForm, RegisterForm
-from blog.mixins import PostCheckMixin, PostMixin
-from blog.models import Category, Comment, Post
-from blog.utils import get_posts_for_user, get_published_posts_queryset
-from core.constants import PAGINATE_COUNT
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -19,6 +13,13 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
+
+from blog.comments_check import render_comment_template
+from blog.forms import CommentForm, PostForm, ProfileForm, RegisterForm
+from blog.mixins import PostCheckMixin, PostMixin
+from blog.models import Category, Comment, Post
+from blog.utils import get_posts_for_user, get_published_posts_queryset
+from core.constants import PAGINATE_COUNT
 
 
 @login_required

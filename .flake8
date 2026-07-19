@@ -1,0 +1,4 @@
+echo [flake8] > .flake8
+echo max-line-length = 88 >> .flake8
+echo ignore = D100,D101,D102,D103,D104,D105,D106 >> .flake8
+echo exclude = venv,.venv,env,__pycache__,migrations,.git >> .flake8

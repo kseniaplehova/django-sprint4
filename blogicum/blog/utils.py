@@ -1,6 +1,7 @@
-from blog.models import Post
 from django.db.models import Count, Q
 from django.utils import timezone
+
+from blog.models import Post
 
 
 def get_published_posts_queryset():

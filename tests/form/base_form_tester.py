@@ -20,11 +20,7 @@ from typing import (
 
 import bs4
 import django.test
-from conftest import (
-    ItemNotCreatedException,
-    TitledUrlRepr,
-    restore_cleaned_data,
-)
+from conftest import ItemNotCreatedException, TitledUrlRepr, restore_cleaned_data
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db.models import Model, QuerySet
 from django.forms import BaseForm
